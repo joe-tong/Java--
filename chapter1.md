@@ -1,4 +1,6 @@
 # 前言
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+#### 希望大家通过细心阅读能够对java的学习有所帮助,哥教你的不是技术,是学习能力的提高
+
+
 
