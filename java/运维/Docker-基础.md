@@ -145,8 +145,113 @@ docker version
 
 ```
 yum ‐y remove docker‐engine
+```
+
+## Docker常用命令
+
+### 镜像相关命令
+
+#### 1、搜索镜像
+
+可使用 docker search命令搜索存放在 Docker Hub中的镜像。执行该命令后， Docker就会在Docker Hub中搜索含有 java这
+
+个关键词的镜像仓库。
 
 ```
+docker search java
+```
+
+以上列表包含五列，含义如下：
+
+- NAME:镜像仓库名称。
+
+- DESCRIPTION:镜像仓库描述。
+
+- STARS：镜像仓库收藏数，表示该镜像仓库的受欢迎程度，类似于 GitHub的 stars0
+
+- OFFICAL:表示是否为官方仓库，该列标记为\[0K\]的镜像均由各软件的官方项目组创建和维护。
+
+- AUTOMATED：表示是否是自动构建的镜像仓库。
+
+#### 2、下载镜像
+
+使用命令docker pull命令即可从 Docker Registry上下载镜像，执行该命令后，Docker会从 Docker Hub中的 java仓
+
+新版本的 Java镜像。如果要下载指定版本则在java后面加冒号指定版本，例如：docker pull java:8
+
+```
+docker pull java:8
+```
+
+#### 3、列出镜像
+
+使用 docker images命令即可列出已下载的镜像
+
+```
+docker images
+```
+
+#### 4、删除本地镜像
+
+使用 docker rmi命令即可删除指定镜像，强制删除加 -f
+
+```
+docker rmi java 
+```
+
+删除所有镜像
+
+```
+docker rmi $(docker images‐q)
+```
+
+### 容器相关命令
+
+#### 1、新建并启动容器
+
+使用以下docker run命令即可新建并启动一个容器，该命令是最常用的命令，它有很多选项，下面将列举一些常用的选项。
+
+-d选项：表示后台运行
+
+-P选项：随机端口映射
+
+-p选项：指定端口映射，有以下四种格式。
+
+-- ip:hostPort:containerPort
+
+-- ip::containerPort
+
+-- hostPort:containerPort
+
+-- containerPort
+
+--net选项：指定网络模式，该选项有以下可选参数：
+
+--net=bridge:
+
+默认选项
+
+，表示连接到默认的网桥。
+
+--net=host:容器使用宿主机的网络。
+
+--net=container:NAME-or-ID：告诉 Docker让新建的容器使用已有容器的网络配置。
+
+--net=none：不配置该容器的网络，用户可自定义网络配置。
+
+```
+docker run ‐d ‐p 91:80 nginx
+```
+
+这样就能启动一个 Nginx容器。在本例中，为 docker run添加了两个参数，含义如下：
+
+-d 后台运行
+
+-p 宿主机端口:容器端口 \#开放容器端口到宿主机端口
+
+访问 http://Docker宿主机 IP:91/，将会看到nginx的主界面如下：
+
+
 
 
 
